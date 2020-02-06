@@ -77,11 +77,12 @@ class InteractiveRecord
  end 
  
  
- def self.find_by(attribute)
+ def self.find_by(attribute_hash)
    #binding.pry
-   x = attribute.values.first
-   binding.pry
-   DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attribute} = (?)")
+   value = attribute.values.first
+   #binding.pry
+   formatted_value = x.class == Fixnum ? x : ""
+   DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first} = (?)")
  end 
  
  
